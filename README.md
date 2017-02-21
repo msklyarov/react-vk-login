@@ -1,11 +1,11 @@
-# React Facebook Login - [![Build Status](https://travis-ci.org/keppelen/react-facebook-login.svg?branch=master)](https://travis-ci.org/keppelen/react-facebook-login)
+# React Vk Login 
 
-> A Component React for Facebook Login
+> A Component React for Vk Login
 
 ## Getting Started
 ```shell
-git clone https://github.com/keppelen/react-facebook-login.git && cd react-facebook-login
-npm install react react-dom react-facebook-login --save
+git clone https://github.com/ZigGreen/react-vk-login.git && cd react-vk-login
+npm install react react-dom react-vk-login --save
 ```
 
 ## Development
@@ -21,138 +21,22 @@ npm start
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FacebookLogin from 'react-facebook-login';
+import VkLogin from 'react-vk-login';
 
-const responseFacebook = (response) => {
+const responseVk = (response) => {
   console.log(response);
 }
 
 ReactDOM.render(
-  <FacebookLogin
+  <VkLogin
     appId="1088597931155576"
     autoLoad={true}
     fields="name,email,picture"
     onClick={componentClicked}
-    callback={responseFacebook} />,
+    callback={responseVk} />,
   document.getElementById('demo')
 );
 ```
-
-### Custom CSS Class and Icon
-By default fontawesome is included, If you don't want to use default fontawesome icons, you can send an element in icon attribute
-
-Fontawesome example:
-```js
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import FacebookLogin from 'react-facebook-login';
-
-const responseFacebook = (response) => {
-  console.log(response);
-}
-
-ReactDOM.render(
-  <FacebookLogin
-    appId="1088597931155576"
-    autoLoad={true}
-    fields="name,email,picture"
-    callback={responseFacebook}
-    cssClass="my-facebook-button-class"
-    icon="fa-facebook"
-  />,
-  document.getElementById('demo')
-);
-```
-
-Custom element example:
-```js
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import FacebookLogin from 'react-facebook-login';
-import TiSocialFacebookCircular from 'react-icons/lib/ti/social-facebook-circular';
-
-const responseFacebook = (response) => {
-  console.log(response);
-}
-
-ReactDOM.render(
-  <FacebookLogin
-    appId="1088597931155576"
-    autoLoad={true}
-    fields="name,email,picture"
-    callback={responseFacebook}
-    cssClass="my-facebook-button-class"
-    icon={<TiSocialFacebookCircular />}
-  />,
-  document.getElementById('demo')
-);
-```
-
-### Custom permission
-By default the component, request only 'public_profile' permission, you can change if you send 'scope', that is a string comma separated attribute.
-
-see https://developers.facebook.com/docs/facebook-login/permissions for permissions list
-
-```js
-  import React from 'react';
-  import FacebookLogin from 'react-facebook-login';
-
-  class MyComponent extends React.Component {
-    constructor(props) {
-        super(props);
-    };
-
-    responseFacebook = (response) => {
-      console.log(response);
-    };
-
-    render() {
-      return (
-        <FacebookLogin
-          appId="1088597931155576"
-          autoLoad={true}
-          fields="name,email,picture"
-          scope="public_profile,user_friends,user_actions.books"
-          callback={responseFacebook}
-        />
-      )
-    }
-  }
-```
-
-### Server
-```js
-'use strict';
-
-import React from 'react';
-import FacebookLogin from 'react-facebook-login';
-
-class MyComponent extends React.Component {
-  constructor(props) {
-      super(props);
-  };
-
-  responseFacebook = (response) => {
-    console.log(response);
-  };
-
-  render() {
-    return (
-      <FacebookLogin
-        appId="1088597931155576"
-        autoLoad={true}
-        fields="name,email,picture"
-        callback={responseFacebook}
-      />
-    )
-  }
-}
-
-export default MyComponent;
-```
-
 
 ## Parameters
 
@@ -162,11 +46,11 @@ export default MyComponent;
 |     size     |     string          |              small - medium - metro                 |
 |     scope    |     string          |      public_profile, email, user_birthday           |
 |     fields   |     string          |              name,email,picture                     |
-|   callback   |     function        |             resultFacebookLogin                     |
+|   callback   |     function        |             resultVkLogin                     |
 |   autoLoad   |     boolean         |                  false                              |
 |     xfbml    |     boolean         |                  false                              |
 |reAuthenticate|     boolean         |                  false                              |
-|   textButton |     string          |           Login with Facebook                       |
+|   textButton |     string          |           Login with Vk                       |
 |   cssClass   |     string          | kep-login-facebook kep-login-facebook-[button-size] |
 | redirectUri  |     string          |               window.location.href (mobile-only)    |
 |   version    |     string          |                  2.3                                |

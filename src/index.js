@@ -1,1 +1,1 @@
-export default from './facebook';
+export default from './vk-button';

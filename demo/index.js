@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Link, browserHistory } from 'react-router';
-import FacebookLogin from '../src/facebook';
+import VkLogin from '../src/vk-button';
 
-const responseFacebook = (response) => {
+const responseVk = (response) => {
   console.log(response);
 };
 
@@ -12,13 +12,10 @@ class Base extends Component {
     return (
       <div>
         <Link to="/dummy">Route to dummy page</Link>
-        <FacebookLogin
-          appId="1088597931155576"
-          autoLoad
-          buttonStyle={ { fontSize: 40 } }
-          callback={responseFacebook}
-          icon="fa-facebook"
-        />
+        <VkLogin
+          apiId="5376167"
+          callback={responseVk}
+        >1111</VkLogin>
       </div>
     );
   }
@@ -47,4 +44,3 @@ ReactDOM.render(
   </Router>,
   document.getElementById('demo')
 );
-
