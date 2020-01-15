@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import VkLogin from '../src/vk-button';
 
-const responseVk = (response) => {
+const responseVk = response => {
   console.log(response);
 };
 
@@ -12,10 +12,9 @@ class Base extends Component {
     return (
       <div>
         <Link to="/dummy">Route to dummy page</Link>
-        <VkLogin
-          apiId="5376167"
-          callback={responseVk}
-        >1111</VkLogin>
+        <VkLogin apiId="5376167" callback={responseVk}>
+          OAuth
+        </VkLogin>
       </div>
     );
   }
@@ -27,7 +26,8 @@ class Dummy extends Component {
       <div>
         <Link to="/">Back</Link>
         <h1>
-          This is just a dummy page to test the button<br />
+          This is just a dummy page to test the button
+          <br />
           <a href="https://github.com/keppelen/react-facebook-login/pull/76#issuecomment-262098946">
             survives back and forth routing
           </a>
@@ -39,8 +39,8 @@ class Dummy extends Component {
 
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route path="/" component={Base}/>
-    <Route path="/dummy" component={Dummy}/>
+    <Route path="/" component={Base} />
+    <Route path="/dummy" component={Dummy} />
   </Router>,
-  document.getElementById('demo')
+  document.getElementById('demo'),
 );

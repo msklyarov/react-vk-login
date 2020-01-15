@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+var webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -8,12 +8,15 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
-      { test: /\.scss$/, loader: 'css?modules&localIdentName=[local]!postcss!sass' },
+      {
+        test: /\.scss$/,
+        loader: 'css?modules&localIdentName=[local]!postcss!sass',
+      },
     ],
   },
 
   externals: {
-    'react': 'react',
+    react: 'react',
     'react-dom': 'ReactDOM',
   },
 
@@ -30,10 +33,14 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production'),
+        NODE_ENV: JSON.stringify('production'),
       },
     }),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
   ],

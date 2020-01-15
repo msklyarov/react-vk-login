@@ -1,8 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles/vk.scss';
 
 class vkLogin extends React.Component {
-
   static propTypes = {
     disabled: PropTypes.bool,
     callback: PropTypes.func.isRequired,
@@ -20,11 +20,11 @@ class vkLogin extends React.Component {
       this.sdkLoaded();
       return;
     }
-    this.setFbAsyncInit();
+    this.setVkAsyncInit();
     this.loadSdkAsynchronously();
   }
 
-  setFbAsyncInit() {
+  setVkAsyncInit() {
     const { apiId } = this.props;
     window.vkAsyncInit = () => {
       window.VK.init({ apiId });
@@ -39,13 +39,13 @@ class vkLogin extends React.Component {
   loadSdkAsynchronously() {
     const el = document.createElement('script');
     el.type = 'text/javascript';
-    el.src = 'https://vk.com/js/api/openapi.js?139';
+    el.src = 'https://vk.com/js/api/openapi.js?163';
     el.async = true;
     el.id = 'vk-jssdk';
     document.getElementsByTagName('head')[0].appendChild(el);
   }
 
-  checkLoginState = (response) => {
+  checkLoginState = response => {
     this.setState({ isProcessing: false });
 
     if (this.props.callback) {
@@ -54,7 +54,11 @@ class vkLogin extends React.Component {
   };
 
   click = () => {
-    if (!this.state.isSdkLoaded || this.state.isProcessing || this.props.disabled) {
+    if (
+      !this.state.isSdkLoaded ||
+      this.state.isProcessing ||
+      this.props.disabled
+    ) {
       return;
     }
     this.setState({ isProcessing: true });
@@ -62,13 +66,17 @@ class vkLogin extends React.Component {
   };
 
   style() {
-    return <style dangerouslySetInnerHTML={{ __html: styles }}/>;
+    return <style dangerouslySetInnerHTML={{ __html: styles }} />;
   }
 
   // [AdGo] 20.11.2016 - coult not get container class to work
   containerStyle() {
     const style = { transition: 'opacity 0.5s' };
-    if (this.state.isProcessing || !this.state.isSdkLoaded || this.props.disabled) {
+    if (
+      this.state.isProcessing ||
+      !this.state.isSdkLoaded ||
+      this.props.disabled
+    ) {
       style.opacity = 0.6;
     }
     return Object.assign(style, this.props.containerStyle);
@@ -77,11 +85,8 @@ class vkLogin extends React.Component {
   render() {
     const { disabled, callback, apiId, ...buttonProps } = this.props;
     return (
-      <span style={ this.containerStyle() }>
-        <button
-          {...buttonProps}
-          onClick={this.click}
-        />
+      <span style={this.containerStyle()}>
+        <button {...buttonProps} onClick={this.click} />
         {this.style()}
       </span>
     );
