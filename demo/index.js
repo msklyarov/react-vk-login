@@ -25,13 +25,7 @@ class Dummy extends Component {
     return (
       <div>
         <Link to="/">Back</Link>
-        <h1>
-          This is just a dummy page to test the button
-          <br />
-          <a href="https://github.com/keppelen/react-facebook-login/pull/76#issuecomment-262098946">
-            survives back and forth routing
-          </a>
-        </h1>
+        <h1>This is just a dummy page to test the button</h1>
       </div>
     );
   }
