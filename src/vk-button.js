@@ -86,7 +86,7 @@ class vkLogin extends React.Component {
     const { disabled, callback, apiId, ...buttonProps } = this.props;
     return (
       <span style={this.containerStyle()}>
-        <button {...buttonProps} onClick={this.click} />
+        <button {...buttonProps} type="button" onClick={this.click} />
         {this.style()}
       </span>
     );
