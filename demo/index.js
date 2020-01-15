@@ -12,9 +12,18 @@ class Base extends Component {
     return (
       <div>
         <Link to="/dummy">Route to dummy page</Link>
-        <VkLogin apiId="5376167" callback={responseVk}>
-          OAuth
-        </VkLogin>
+        <div>
+          <p>VK login with render prop (and no styling provided out the box)</p>
+          <VkLogin
+            apiId="5376167"
+            callback={responseVk}
+            render={renderProps => (
+              <button onClick={renderProps.onClick}>
+                This is my custom VK button
+              </button>
+            )}
+          />
+        </div>
       </div>
     );
   }

@@ -22,9 +22,9 @@ npm start
 ### Basic
 
 ```js
-import React from "react";
-import ReactDOM from "react-dom";
-import VkLogin from "react-vkontakte-login";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import VkLogin from 'react-vkontakte-login';
 
 const responseVk = response => {
   console.log(response);
@@ -32,13 +32,13 @@ const responseVk = response => {
 
 ReactDOM.render(
   <VkLogin
-    appId="1088597931155576"
-    autoLoad={true}
-    fields="name,email,picture"
-    onClick={componentClicked}
+    apiId="5376167"
     callback={responseVk}
+    render={renderProps => (
+      <button onClick={renderProps.onClick}>This is my custom VK button</button>
+    )}
   />,
-  document.getElementById("demo")
+  document.getElementById('demo'),
 );
 ```
 

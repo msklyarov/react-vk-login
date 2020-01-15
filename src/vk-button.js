@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../styles/vk.scss';
 
 class vkLogin extends React.Component {
   static propTypes = {
-    disabled: PropTypes.bool,
+    isDisabled: PropTypes.bool,
     callback: PropTypes.func.isRequired,
     apiId: PropTypes.string.isRequired,
-    containerStyle: PropTypes.object,
+    onClick: PropTypes.func,
+    render: PropTypes.func.isRequired,
   };
 
   state = {
@@ -57,7 +57,7 @@ class vkLogin extends React.Component {
     if (
       !this.state.isSdkLoaded ||
       this.state.isProcessing ||
-      this.props.disabled
+      this.props.isDisabled
     ) {
       return;
     }
@@ -65,31 +65,20 @@ class vkLogin extends React.Component {
     window.VK.Auth.login(this.checkLoginState);
   };
 
-  style() {
-    return <style dangerouslySetInnerHTML={{ __html: styles }} />;
-  }
-
-  // [AdGo] 20.11.2016 - coult not get container class to work
-  containerStyle() {
-    const style = { transition: 'opacity 0.5s' };
-    if (
-      this.state.isProcessing ||
-      !this.state.isSdkLoaded ||
-      this.props.disabled
-    ) {
-      style.opacity = 0.6;
-    }
-    return Object.assign(style, this.props.containerStyle);
-  }
-
   render() {
-    const { disabled, callback, apiId, ...buttonProps } = this.props;
-    return (
-      <span style={this.containerStyle()}>
-        <button {...buttonProps} type="button" onClick={this.click} />
-        {this.style()}
-      </span>
-    );
+    const { render } = this.props;
+
+    if (!render) {
+      throw new Error('ReactVkontakteLogin requires a render prop to render');
+    }
+
+    const propsForRender = {
+      onClick: this.click,
+      isDisabled: !!this.props.isDisabled,
+      isProcessing: this.state.isProcessing,
+      isSdkLoaded: this.state.isSdkLoaded,
+    };
+    return this.props.render(propsForRender);
   }
 }
 
