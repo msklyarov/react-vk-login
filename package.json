@@ -1,6 +1,6 @@
 {
   "name": "react-vkontakte-login",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Component React for VKontakte Login",
   "main": "dist/vk-login.js",
   "scripts": {
